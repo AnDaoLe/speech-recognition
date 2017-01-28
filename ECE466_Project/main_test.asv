@@ -1,0 +1,39 @@
+clear all;
+clc;
+close all;
+
+addpath('mfcc');
+addpath('voicebox');
+addpath('samples');
+
+%%
+%%Convert wav files to MFCC for true values
+
+%%convert true value for targets 'one''two''three''four''five'.
+freq=readwav('true_two');
+% mel=frq2mel(freq);
+% mel=mel';
+mel=melcepst(freq,11025, [], 1);
+%need to create for statement for every cepstrum coefficients
+plot(freq)
+%end
+y=pdf('Normal', mel, 0,1)
+plot (mel);
+lambda=(max(y)-min(y))/2;
+for i=0:1:length(freq)
+if freq(i)>lambda
+    for j=1; j=length(freq)-i
+     a=0;
+     %copy array
+     freq_cut(a) = freq(i+j);
+     a=a+1;
+    
+end
+end
+
+
+        for i=1:322
+
+              b=mel(i,12);
+              target1(i)=cond_entropy(b);
+        end

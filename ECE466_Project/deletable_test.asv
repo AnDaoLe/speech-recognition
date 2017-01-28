@@ -1,0 +1,5 @@
+for i=1:2
+    a=cha'two'+char(i)
+    
+    i=i
+end
